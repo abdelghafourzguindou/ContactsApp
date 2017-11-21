@@ -1,0 +1,57 @@
+<div class="container spacer">
+  <div class="panel panel-default">
+    <div class="panel panel-heading">
+     <!-- Contacs List -->
+     
+      <form class="form-inline">
+        <div class="input-group">
+          
+          
+          <input ng-change="search()" [(ngModel)]="keyWord" type="text" class="form-control" placeholder="Keyword" />
+          <span class="input-group-addon"><button (click)="search()">Search</button></span>
+        </div>
+      </form>
+    </div>
+
+    <div class="panel panel-body">
+
+      <!-- <div class="form-group">
+        <label>Keyword  </label>
+        <input type="text" [(ngModel)] = "keyWord"/>
+        <button class="btn btn-default" (click)="search()">Search</button>
+      </div> -->
+
+      <table class="table table-striped">
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>E-mail</th>
+          <th>Phone</th>
+          <th>Birthday</th>
+        </tr>
+        <tr *ngFor="let c of pageContacts?.content">
+          <td>{{c.id}}</td>
+          <td>{{c.firstName}}</td>
+          <td>{{c.lastName}}</td>
+          <td>{{c.email}}</td>
+          <td>{{c.phone}}</td>
+          <td>{{c.birthday}}</td>
+          <td>
+            <a (click)="onEditContact(c.id)" class="btn btn-default clickable">Edit</a>
+          </td>
+          <td>
+            <a (click)="onRemoveContact(c)" class="btn btn-default clickable">Remove</a>
+          </td>
+        </tr>
+      </table>
+      <div class="container spacer">
+        <ul class="nav nav-pills">
+          <li [ngClass]="{'active': i == currentPage}" *ngFor="let p of pages; let i = index">
+            <a class="clickable" (click)="gotoPage(i)">{{i}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
